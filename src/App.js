@@ -5,6 +5,13 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import 'ag-grid-enterprise';//enterprice edition
 
+import "antd/dist/antd.css";
+import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
+import { Input } from 'antd';
+const { Search } = Input;
+const { Header, Content, Sider } = Layout;
+
+
 class App extends Component{
 
   state = {
@@ -42,16 +49,20 @@ class App extends Component{
 
   render(){
     return (
-      <div className="ag-theme-balham" style={{ height: '500px', width: '600px' }}> 
-        <button onClick={this.onButtonClick}>Get selected rows</button>
-        <AgGridReact columnDefs={this.state.columnDefs} 
-                     rowData={this.state.rowData} 
-                     rowSelection="multiple" 
-                     onGridReady={ params => this.gridApi = params.api } 
-                     groupSelectsChildren={true}
-                     autoGroupColumnDef={this.state.autoGroupColumnDef}>
-        </AgGridReact>
-      </div>
+       <Layout>
+          <div className="ag-theme-balham" style={{ height: '500px', width: '600px' }}> 
+              <Button type="primary" onClick={this.onButtonClick}>Get selected rows</Button>
+              <Input  placeholder="input search text" onChange={e => console.log(e.target.value)} suffix={<Icon type="search" />} />
+              
+              <AgGridReact columnDefs={this.state.columnDefs} 
+                          rowData={this.state.rowData} 
+                          rowSelection="multiple" 
+                          onGridReady={ params => this.gridApi = params.api } 
+                          groupSelectsChildren={true}
+                          autoGroupColumnDef={this.state.autoGroupColumnDef}>
+              </AgGridReact>
+          </div>
+       </Layout>
     );
   }
 }
