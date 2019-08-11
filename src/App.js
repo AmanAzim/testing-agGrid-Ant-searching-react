@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import SearchFilterDemo from './component/SearchFilter'
 import './App.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -12,21 +13,23 @@ const { Search } = Input;
 const { Header, Content, Sider } = Layout;
 
 
+
 class App extends Component{
 
   state = {
     columnDefs:[ 
       {headerName: "Make", field: "make", sortable: true, filter: true, rowGroup: true}, 
-      {headerName: "Price", field: "price", sortable: true, filter: true  }
+      {headerName: "Price", field: "price", sortable: true, filter: true  }  
     ],
     autoGroupColumnDef: {
       headerName: "Model",
       field: "model",
+      sortable: true,
       cellRenderer:'agGroupCellRenderer',
       cellRendererParams: {
         checkbox: true
       }
-    }
+    },
    /* rowData:[
       {make: "Toyota", model: "Celica", price: 35000}, 
       {make: "Ford", model: "Mondeo", price: 32000}, 
@@ -47,20 +50,23 @@ class App extends Component{
       alert(`Selected nodes: ${selectedDataStringPresentation}`)
     }
 
+
   render(){
     return (
        <Layout>
           <div className="ag-theme-balham" style={{ height: '500px', width: '600px' }}> 
               <Button type="primary" onClick={this.onButtonClick}>Get selected rows</Button>
-              <Input  placeholder="input search text" onChange={e => console.log(e.target.value)} suffix={<Icon type="search" />} />
               
               <AgGridReact columnDefs={this.state.columnDefs} 
                           rowData={this.state.rowData} 
                           rowSelection="multiple" 
                           onGridReady={ params => this.gridApi = params.api } 
                           groupSelectsChildren={true}
-                          autoGroupColumnDef={this.state.autoGroupColumnDef}>
+                          autoGroupColumnDef={this.state.autoGroupColumnDef}
+                          >
               </AgGridReact>
+
+              <SearchFilterDemo />
           </div>
        </Layout>
     );
