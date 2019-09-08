@@ -1,8 +1,10 @@
 import React,{Component} from 'react';
 import SearchFilterDemo from './component/SearchFilter'
 import AgTryal from './component/ag-tryal.js';
+
 import FormikExample from './component/Formik/testFormik.js';
 import TestField from './component/Formik/testField.js';
+import TestFieldArray from './component/Formik/testFieldArray';
 
 import './App.css';
 import { AgGridReact } from 'ag-grid-react';
@@ -15,6 +17,8 @@ import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
 import { Input } from 'antd';
 const { Search } = Input;
 const { Header, Content, Sider } = Layout;
+
+
 
 
 
@@ -82,6 +86,8 @@ class App extends Component{
         <FormikExample />
         <hr/>
         <TestField />
+        <hr/>
+        <TestFieldArray />
       </>
     );
   }
